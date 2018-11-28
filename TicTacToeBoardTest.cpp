@@ -20,3 +20,47 @@ TEST(TicTacToeBoardTest, unitTestName)
 	ASSERT_TRUE(true);
 }
 */
+
+TEST(TicTacToeBoardTest, getPiece)
+{
+	TicTacToeBoard obj;
+	Piece placPiece(0,1);
+	Piece myPiece = obj.getPiece(0,1);
+	ASSERT_EQ(myPiece, 'X');
+}
+
+TEST(TicTacToeBoardTest, placePiece)
+{
+	TicTacToeBoard obj;
+	Piece placePiece(3,0);
+	Piece myPiece = obj.getPiece(3,0);
+	ASSERT_EQ(myPiece, 'Invalid');
+}
+
+TEST(TicTacToeBoardTest, placePiece)
+{
+	TicTacToeBoard obj;
+	Piece placePiece(0,3);
+	Piece myPiece = obj.getPiece(3,0);
+	ASSERT_EQ(myPiece, 'Invalid');
+}
+
+TEST(TicTacToeBoardTest, placePiece)
+{
+	
+}
+
+TEST(TicTacToeBoardTest, getWinner)
+{
+	
+}
+
+TEST(TicTacToeBoardTest, toggleTurn)
+{
+	
+}
+
+TEST(TicTacToeBoardTest, toggleTurn)
+{
+	
+}
