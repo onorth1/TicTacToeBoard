@@ -19,7 +19,11 @@ TicTacToeBoard::TicTacToeBoard()
 **/
 Piece TicTacToeBoard::toggleTurn()
 {
-  return Invalid;
+  if(turn == X)
+    turn = O;
+  else
+    turn = X;
+  return turn;
 }
 
 /**
@@ -33,7 +37,18 @@ Piece TicTacToeBoard::toggleTurn()
 **/ 
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
-  return Invalid;
+  if(row >= 0 && row <= 2 && column >= 0 && column <= 2){
+    if(board[row][column] == X)
+      return X;
+    else if(board[row][column] == O )
+      return O;
+    else{  
+      board[row][column] = turn;
+      return toggleTurn();
+    }
+  }
+  else
+    return Invalid;
 }
 
 /**
@@ -42,7 +57,10 @@ Piece TicTacToeBoard::placePiece(int row, int column)
 **/
 Piece TicTacToeBoard::getPiece(int row, int column)
 {
-  return Invalid;
+  if(row < 0 || row > 3 || column < 0 || column > 3)
+    return Invalid;
+  else  
+    return board[row][column];
 }
 
 /**
@@ -51,5 +69,37 @@ Piece TicTacToeBoard::getPiece(int row, int column)
 **/
 Piece TicTacToeBoard::getWinner()
 {
-  return Invalid;
+  //X wins
+  if(board[0][0] == X && board[0][1] == X && board[0][2]==X)
+    return X;
+  if(board[1][0] == X && board[1][1] == X && board[1][2]==X)
+    return X;
+  if(board[2][0] == X && board[2][1] == X && board[2][2]==X)
+    return X;  
+  if(board[0][0] == X && board[1][1] == X && board[2][2]==X)
+    return X;
+  if(board[0][2] == X && board[1][1] == X && board[2][0]==X)
+    return X; 
+    
+  //O Wins    
+  if(board[0][0] == O && board[0][1] == O && board[0][2]==O)
+    return O;
+  if(board[1][0] == O && board[1][1] == O && board[1][2]==O)
+    return O;
+  if(board[2][0] == O && board[2][1] == O && board[2][2]==O)
+    return O;  
+  if(board[0][0] == O && board[1][1] == O && board[2][2]==O)
+    return O;
+  if(board[0][2] == O && board[1][1] == O && board[2][0]==O)
+    return O;
+  
+  //Check for Blank Square
+  for(int i=0; i<BOARDSIZE; i++){
+    for(int j=0; j<BOARDSIZE; j++){
+      if(board[i][j] == Blank)
+        return Invalid;
+    }
+  }
+  //return Blank if Game is complete and noone won
+  return Blank;
 }
